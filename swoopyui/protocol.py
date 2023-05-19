@@ -17,3 +17,9 @@ class onClientRequestUpdate:
                 "content" : self.action_content
             }
         }
+
+
+class ClientSideUpdate:
+    def __init__(self, dict) -> None:
+        self.update_name = dict["update_name"]
+        self.content = dict["content"]

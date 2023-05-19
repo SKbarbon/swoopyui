@@ -3,7 +3,7 @@ import socketserver
 import random
 import threading
 import multiprocessing
-import sys
+import logging
 import os
 
 from .protocol import onClientRequestUpdate
@@ -24,6 +24,11 @@ class app:
 
     def __host (self):
         flask_app = Flask(__name__)
+
+        # Set the logging level to ignore warnings
+        # log = logging.getLogger('werkzeug')
+        # log.setLevel(logging.ERROR)
+
         self.__all_waited_updates = []
         self.__update_number = 0
 
@@ -50,6 +55,16 @@ class app:
         def start_the_target_function ():
             threading.Thread(target=run_the_target, args=[self.__target_function, [self.__main_view], self], daemon=True).start()
             return ""
+        
+        @flask_app.route("/client_side_update", methods=["POST"])
+        def client_side_update():
+            """This will be called on client side update. Like when user click a button this will be called"""
+            json_data = request.get_json()
+            update_name = json_data.get('update_name')
+            if update_name == "on_view_action":
+                self.__main_view.manage_on_view_action(json_data.get("update_content"))
+            return ""
+
         
         @flask_app.route("/close_the_app")
         def close_the_app ():
