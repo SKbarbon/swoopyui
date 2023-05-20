@@ -72,7 +72,10 @@ class app:
         
         @flask_app.route("/close_the_app")
         def close_the_app ():
-            shutil.rmtree(self.current_tmp_dir)
+            # Remove the temporary dir
+            if os.path.isdir (self.current_tmp_dir):
+                shutil.rmtree(self.current_tmp_dir)
+            # exit the script.
             os._exit(0)
 
         with socketserver.TCPServer(("localhost", 0), None) as s:

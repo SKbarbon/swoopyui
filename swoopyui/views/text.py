@@ -2,7 +2,7 @@ from ..tools.on_action import on_view_action
 
 
 class Text (object):
-    def __init__(self, text, foreground_color="black", background_color="white", on_hover=None) -> None:
+    def __init__(self, text, foreground_color="primary", on_hover=None) -> None:
         self.__last_view_id = None # This is used becuase swiftUI will not know that this updated without it
         self.__id = None
         self.__mother_view = None
@@ -10,7 +10,6 @@ class Text (object):
 
         self.__text = text
         self.__foreground_color = foreground_color
-        self.__background_color = background_color
         self.on_hover = on_hover
     
 
@@ -20,8 +19,7 @@ class Text (object):
             "view_id" : self.__id,
             "vname" : "Text",
             "text" : self.__text,
-            "fgcolor" : self.__foreground_color,
-            "bgcolor" : self.__background_color
+            "fgcolor" : self.__foreground_color
         }
 
     def respown (self, new_id=None, mother_view=None, parent=None):
