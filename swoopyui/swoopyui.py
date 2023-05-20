@@ -13,7 +13,9 @@ from .view import View
 
 
 def run_swiftUI_on_new_process (PORT, tmp_dir):
-    print(tmp_dir)
+    if not os.path.isdir (tmp_dir):
+        print("Cannot found the temp dir.")
+        os._exit(0)
     run_swiftUI_app(PORT, tmp_dir)
 
 class app:
