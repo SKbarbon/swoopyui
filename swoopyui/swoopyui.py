@@ -1,8 +1,9 @@
 from flask import Flask, request
 import socketserver
-import random
+import tempfile
 import threading
 import logging
+import shutil
 import os
 
 from .protocol import onClientRequestUpdate
@@ -11,12 +12,13 @@ from .tools.run_swiftUI import run_swiftUI_app
 from .view import View
 
 
-def run_swiftUI_on_new_process (PORT):
-    run_swiftUI_app(PORT)
+def run_swiftUI_on_new_process (PORT, tmp_dir):
+    print(tmp_dir)
+    run_swiftUI_app(PORT, tmp_dir)
 
 class app:
     """This is the main function of the app, the function that will run the app and show the window"""
-    def __init__(self, target, base_name) -> None:
+    def __init__(self, target, base_name=__name__) -> None:
         self.__main_view = View(app=self)
         self.__target_function = target
         self.__base_name = base_name
@@ -68,12 +70,14 @@ class app:
         
         @flask_app.route("/close_the_app")
         def close_the_app ():
+            shutil.rmtree(self.current_tmp_dir)
             os._exit(0)
 
         with socketserver.TCPServer(("localhost", 0), None) as s:
             free_port = s.server_address[1]
         
-        threading.Thread(target=run_swiftUI_on_new_process, args=[free_port]).start()
+        self.current_tmp_dir = tempfile.mkdtemp()
+        threading.Thread(target=run_swiftUI_on_new_process, args=[free_port, self.current_tmp_dir]).start()
         flask_app.run(port=free_port)
     
     def set_for_the_next_update_get (self, action_name:str, action_content:dict):
