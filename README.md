@@ -27,7 +27,7 @@ app(target=main, base_name=__name__)
 
 Are you ok now 🙃 ? fine lets start:
 
-- [https://github.com/SKbarbon/swoopyui/wiki](The docs!)
+- [The docs](https://github.com/SKbarbon/swoopyui/wiki)
 
 ## help and contribute wanted ⚠️!!
 Hi, read the docs, be master at this, it will be quick and easy..
