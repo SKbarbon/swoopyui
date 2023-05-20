@@ -5,7 +5,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name='swoopyui',
-    version='1.2',
+    version='1.2.1',
     author='SKbarbon',
     description='A python library that allow you to build swiftUI apps using python.',
     long_description=long_des,
@@ -18,6 +18,6 @@ setup(
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows"
     ],
-    include_dirs=["assets"],
+    include_dirs=["assets", "assets"],
     package_data={"assets": ["swoopyui.zip"]},
 )
