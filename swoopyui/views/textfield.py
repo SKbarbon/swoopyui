@@ -24,7 +24,7 @@ class TextField (object):
             "last_view_id" : self.__last_view_id,
             "view_id" : self.__id,
             "vname" : "TextField",
-            "Text" : self.text,
+            "text" : self.text,
             "placeholder" : self.placeholder,
             "width" : self.width,
             "height" : self.height,

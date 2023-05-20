@@ -48,6 +48,7 @@ class Button (object):
             self.__parent_view = parent
     
     def add (self, *sub_view):
+        """Add new subviews to present the button. If there is no subviews the `text` will be used."""
         if self.__mother_view == None:
             raise Exception("Cannot add sub-views while this view not have an active mother view.")
         

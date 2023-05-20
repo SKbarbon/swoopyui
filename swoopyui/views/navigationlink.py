@@ -43,6 +43,7 @@ class NavigationLink (object):
             self.__parent_view = parent
     
     def add (self, *sub_view):
+        """This will add a subview to the page that this NavigationLink is linked to."""
         if self.__mother_view == None:
             raise Exception("Cannot add sub-views while this view not have an active mother view.")
         

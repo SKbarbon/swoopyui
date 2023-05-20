@@ -45,6 +45,7 @@ class NavigationStack (object):
             self.__parent_view = parent
     
     def add (self, *sub_view):
+        """Add a new subview to be inside this NavigationStack."""
         if self.__mother_view == None:
             raise Exception("Cannot add sub-views while this view not have an active mother view.")
         
