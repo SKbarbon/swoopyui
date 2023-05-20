@@ -11,8 +11,10 @@ def install_file(url, output_path):
             file.write(response.content)  # Save the file locally
 
         print(f"File downloaded and installed successfully at: {output_path}")
+        return True
     except requests.exceptions.RequestException as e:
         print(f"Error occurred while downloading the file: {e}")
+        return False
 
 def run_swiftUI_app (port):
     # return
@@ -28,8 +30,12 @@ def run_swiftUI_app (port):
         if not os.path.isfile (zip_path):
             print("WARNING: swiftUI client is not found!")
             print("installing swiftUI client app from github ..")
-            install_file(github_zip_url, zip_path)
-            print("installing swiftUI client is done!")
+            result_of_installing = install_file(github_zip_url, zip_path)
+            if result_of_installing == True:
+                print("installing swiftUI client is done!")
+            else:
+                print("Cannot install swiftUI client!")
+                os._exit(0)
         unzip_file (str(swiftUI_app_path).replace("swoopyui.app/Contents/MacOS/", "swoopyui.zip"), str(__file__).replace("tools/run_swiftUI.py", "assets/"))
     run_command = r"./swoopyui"
 

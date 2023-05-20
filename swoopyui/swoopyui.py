@@ -2,7 +2,6 @@ from flask import Flask, request
 import socketserver
 import random
 import threading
-import multiprocessing
 import logging
 import os
 
@@ -73,7 +72,7 @@ class app:
         with socketserver.TCPServer(("localhost", 0), None) as s:
             free_port = s.server_address[1]
         
-        multiprocessing.Process(target=run_swiftUI_on_new_process, args=[free_port]).start()
+        threading.Thread(target=run_swiftUI_on_new_process, args=[free_port]).start()
         flask_app.run(port=free_port)
     
     def set_for_the_next_update_get (self, action_name:str, action_content:dict):

@@ -11,7 +11,7 @@ setup(
     long_description=long_des,
     long_description_content_type='text/markdown',
     url='https://github.com/SKbarbon/swoopyui',
-    install_requires=["flask"],
+    install_requires=["flask", "requests"],
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
