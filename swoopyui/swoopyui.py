@@ -26,8 +26,8 @@ class app:
         flask_app = Flask(__name__)
 
         # Set the logging level to ignore warnings
-        # log = logging.getLogger('werkzeug')
-        # log.setLevel(logging.ERROR)
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.ERROR)
 
         self.__all_waited_updates = []
         self.__update_number = 0
