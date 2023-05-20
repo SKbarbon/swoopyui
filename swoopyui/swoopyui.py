@@ -16,13 +16,14 @@ def run_swiftUI_on_new_process (PORT):
 
 class app:
     """This is the main function of the app, the function that will run the app and show the window"""
-    def __init__(self, target) -> None:
+    def __init__(self, target, base_name) -> None:
         self.__main_view = View(app=self)
         self.__target_function = target
+        self.__base_name = base_name
         self.__host()
 
     def __host (self):
-        flask_app = Flask(__name__)
+        flask_app = Flask(self.__base_name)
 
         # Set the logging level to ignore warnings
         log = logging.getLogger('werkzeug')
