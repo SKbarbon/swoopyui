@@ -15,8 +15,7 @@ setup(
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Operating System :: MacOS :: MacOS X",
-        "Operating System :: Microsoft :: Windows"
+        "Operating System :: MacOS :: MacOS X"
     ],
     include_dirs=["assets"],
     package_data={"assets": ["swoopyui.zip"]},

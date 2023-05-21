@@ -1,6 +1,9 @@
 from swoopyui import app, View, ScrollView
 import swoopyui
 import time
+import sys
+
+print(sys.platform)
 
 
 def main (view:View):

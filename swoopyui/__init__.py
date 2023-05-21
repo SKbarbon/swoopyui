@@ -1,3 +1,6 @@
+from .tools.check_if_mac import is_device_a_mac
+if not is_device_a_mac():
+    raise Exception ("Your device is not a mac. So cannot use this library.")
 
 from .swoopyui import app
 
