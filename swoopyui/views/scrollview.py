@@ -83,7 +83,7 @@ class ScrollView (object):
         return self.__scroll_to_view_id
     
     @scroll_to_view_id.setter
-    def scroll_to_view_id (self, value):
+    def scroll_to_view_id (self, value:int):
         if self.__mother_view == None:
             raise Exception("Cannot change the sub_view property while its not on the screen.")
         
