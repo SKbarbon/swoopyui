@@ -1,11 +1,12 @@
 # done on last release
-- Fix swiftUI was not change TextField.text if the host ask to.
+- support VStack, HStack, ZStack.
+- support change the `Text` size:float and bold:bool.
 
 # todo
 - Show error if the system was not macOS.
+- support VStack, HStack, ZStack.
 - Support TextEditor.
 - Support ScrollView
-- support VStack, HStack, ZStack.
 - Support Lists.
 - Support Icons.
 - Support Menus
