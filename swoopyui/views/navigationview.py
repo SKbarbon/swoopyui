@@ -55,9 +55,6 @@ class NavigationView (object):
             subv.respown (new_id=self.__mother_view.get_new_view_id(), mother_view=self.__mother_view, parent=self)
             self.__mother_view.sub_views_history.append(subv)
             self.__subviews.append(subv)
-        self.__id = self.__mother_view.get_new_view_id()
-        self.__mother_view.update(self)
-        self.__last_view_id = self.__id
     
     def view_action (self, action_data):
         action_name = action_data['action_name']

@@ -1,23 +1,28 @@
-from ..tools.on_action import on_view_action
 
 
 
 
 
-class Button (object):
-    """A button object. A view that make an action per click."""
-    def __init__(self, text="", on_click=None, background_color="blue", width=250, height=40) -> None:
+class ScrollView (object):
+    """
+    A scrollable view.
+
+    The `scroll_to_view_id` property is used to make the scrollview auto-scroll into a
+    specific subview using its `id`.
+
+    The `scroll_mode` property used to set a scroll stack mode, put `v` as Vertical, or `h` as Horizontal.
+    """
+    def __init__(self, scroll_to_view_id:int=None, scroll_mode:str="v") -> None:
         self.__last_view_id = None # This is used becuase swiftUI will not know that this updated without it
         self.__id = None
         self.__mother_view = None
         self.__parent_view = None
 
-        self.__text = text
-        self.__width = width
-        self.__height = height
-        self.on_click = on_click
+        self.__scroll_to_view_id = scroll_to_view_id
+        self.__scroll_mode = scroll_mode
         self.__subviews = []
     
+
     def get_dict_content (self):
         all_sub_views = []
         for sv in self.__subviews:
@@ -25,13 +30,13 @@ class Button (object):
         return {
             "last_view_id" : self.__last_view_id,
             "view_id" : self.__id,
-            "vname" : "Button",
-            "text" : self.__text,
-            "width" : self.__width,
-            "height" : self.__height,
+            "vname" : "ScrollView",
+            "scroll_to_view_id" : self.__scroll_to_view_id,
+            "scroll_mode" : self.__scroll_mode,
             "sub_views" : all_sub_views
         }
     
+
     def respown (self, new_id=None, mother_view=None, parent=None):
         if new_id == None: return
         if mother_view == None: return
@@ -47,8 +52,9 @@ class Button (object):
         if self.__parent_view == None:
             self.__parent_view = parent
     
+
     def add (self, *sub_view):
-        """Add new subviews to present the button. If there is no subviews the `text` will be used."""
+        """Add a new subview to be inside this StackView."""
         if self.__mother_view == None:
             raise Exception("Cannot add sub-views while this view not have an active mother view.")
         
@@ -57,65 +63,46 @@ class Button (object):
             self.__mother_view.sub_views_history.append(subv)
             self.__subviews.append(subv)
     
-    def view_action (self, action_data):
-        action_name = action_data["action_name"]
-        if action_name == "on_click":
-            on_view_action(self.on_click, [self])
-    
+
     def update (self):
+        """Update the StackView, You mostly wont use it, except after `.add` function."""
         self.__id = self.__mother_view.get_new_view_id()
         self.__mother_view.update(self)
         self.__last_view_id = self.__id
-        
+
         self.__parent_view.update()
     
+
     @property
     def id (self):
         return self.__id
     
-    @property
-    def text (self): return self.__text
 
-    @text.setter
-    def text (self, value):
+    @property
+    def scroll_to_view_id (self):
+        return self.__scroll_to_view_id
+    
+    @scroll_to_view_id.setter
+    def scroll_to_view_id (self, value):
         if self.__mother_view == None:
             raise Exception("Cannot change the sub_view property while its not on the screen.")
         
-        self.__text = value
+        self.__scroll_to_view_id = value
         self.__id = self.__mother_view.get_new_view_id()
         self.__mother_view.update(self)
         self.__last_view_id = self.__id
     
 
     @property
-    def width (self):
-        return self.__width
+    def scroll_mode (self):
+        return self.__scroll_mode
     
-    @width.setter
-    def width (self, value):
+    @scroll_mode.setter
+    def scroll_mode (self, value):
         if self.__mother_view == None:
             raise Exception("Cannot change the sub_view property while its not on the screen.")
         
-        if not isinstance(value, float) or not isinstance(value, int):
-            raise ValueError(f"width must be a number")
-        self.__width = value
-        self.__id = self.__mother_view.get_new_view_id()
-        self.__mother_view.update(self)
-        self.__last_view_id = self.__id
-    
-
-    @property
-    def height (self):
-        return self.__height
-    
-    @height.setter
-    def height (self, value):
-        if self.__mother_view == None:
-            raise Exception("Cannot change the sub_view property while its not on the screen.")
-        
-        if not isinstance(value, float) or not isinstance(value, int):
-            raise ValueError(f"height must be a number")
-        self.__height = value
+        self.__scroll_mode = value
         self.__id = self.__mother_view.get_new_view_id()
         self.__mother_view.update(self)
         self.__last_view_id = self.__id

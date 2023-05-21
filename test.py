@@ -1,16 +1,19 @@
-from swoopyui import app, View, Stack
+from swoopyui import app, View, ScrollView
 import swoopyui
 import time
 
 
 def main (view:View):
-    s = Stack(stack_type=swoopyui.VSTACK)
+    s = ScrollView (scroll_mode="v")
     view.add(s)
 
-    for i in range (20):
-        s.add(swoopyui.Text(f"{i}", size=14, bold=True))
+    vs = swoopyui.Stack(stack_type=swoopyui.VSTACK)
+    s.add(vs); s.update()
+
+    for i in range (150):
+        vs.add(swoopyui.Text(f"{i}"))
     
-    s.update()
+    vs.update()
 
 
 swoopyui.app(target=main)
