@@ -5,10 +5,12 @@ import threading
 import logging
 import shutil
 import os
+import sys
 
 from .protocol import onClientRequestUpdate
 from .tools.run_target import run_the_target
 from .tools.run_swiftUI import run_swiftUI_app
+from .tools.pyinstaller_check import is_run_on_pyinstaller
 from .view import View
 
 
@@ -81,7 +83,10 @@ class app:
         with socketserver.TCPServer(("localhost", 0), None) as s:
             free_port = s.server_address[1]
         
-        self.current_tmp_dir = tempfile.mkdtemp()
+        if is_run_on_pyinstaller():
+            self.current_tmp_dir = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+        else:
+            self.current_tmp_dir = tempfile.mkdtemp()
         threading.Thread(target=run_swiftUI_on_new_process, args=[free_port, self.current_tmp_dir]).start()
         flask_app.run(port=free_port)
     
