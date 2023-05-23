@@ -1,8 +1,8 @@
 # swoopyui
-A simple python library that allow you to build swiftUI apps using python.
+swoopyui is a python library that enable developers to easily build swiftUI apps in python. Its not need any swiftUI experience with no xcode require.
 
 ## How does it work ?
-This library works by running python and swift at the same time!. It start a python localhost at the background and run swiftUI app that show the fron-end by communicating with python back-end host. But you should NOT worry about all of that, becuase the library always making sure that everything stay easy, simple and pythonic.
+It works through two parts: a Python host for managing updates and a Swift client app for the front-end. The client app stays connected to the Python back-end to receive real-time front-end updates. With swoopyui, developers can build SwiftUI apps without worrying about Swift or Xcode, because everything is handled with just Python!.
 
 ## installation
 
