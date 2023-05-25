@@ -34,7 +34,6 @@ Hi, read the docs, be master at this, it will be quick and easy..
 
 I want help with:
 - Supporting iOS, we need to support iOS and iPadOS, so if you can help with this.
-- Find a way to pack this library into `.app`, and fix the problem with most of packing packages.
 - Add a secure connection strategy between the host and client.
 
 Thanks, good luck..
