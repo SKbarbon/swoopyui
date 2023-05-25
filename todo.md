@@ -1,12 +1,10 @@
 # done on last release
-- support VStack, HStack, ZStack.
-- support change the `Text` size:float and bold:bool.
-- Support ScrollView.
-- Show error if the system was not macOS.
+- Support Lists.
+- Support Spacer.
+- Support new shapes: circle
 
 # todo
 - Support TextEditor.
-- Support Lists.
 - Support Icons.
 - Support Menus
 - Support ContextMenu

@@ -14,3 +14,7 @@ from .views.navigationlink import NavigationLink
 from .views.textfield import TextField
 from .views.stack import Stack, VSTACK, HSTACK, ZSTACK
 from .views.scrollview import ScrollView
+from .views.spacer import Spacer
+from .views.list import List
+
+from .views.shapes.circle import Circle
