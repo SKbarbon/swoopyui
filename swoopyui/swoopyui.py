@@ -12,8 +12,8 @@ from .tools.run_target import run_the_target
 from .tools.run_swiftUI import run_swiftUI_app
 from .tools.pyinstaller_check import is_run_on_pyinstaller
 from .view import View
-
-
+     
+     
 def run_swiftUI_on_new_process (PORT, tmp_dir):
     if not os.path.isdir (tmp_dir):
         print("Cannot found the temp dir.")
