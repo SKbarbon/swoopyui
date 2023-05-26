@@ -96,8 +96,11 @@ class Button (object):
         if self.__mother_view == None:
             raise Exception("Cannot change the sub_view property while its not on the screen.")
         
-        if not isinstance(value, float) or not isinstance(value, int):
-            raise ValueError(f"width must be a number")
+        try:
+            int(value)
+        except:
+            raise ValueError(f"height must be a number")
+        
         self.__width = value
         self.__id = self.__mother_view.get_new_view_id()
         self.__mother_view.update(self)
@@ -113,8 +116,11 @@ class Button (object):
         if self.__mother_view == None:
             raise Exception("Cannot change the sub_view property while its not on the screen.")
         
-        if not isinstance(value, float) or not isinstance(value, int):
+        try:
+            int(value)
+        except:
             raise ValueError(f"height must be a number")
+        
         self.__height = value
         self.__id = self.__mother_view.get_new_view_id()
         self.__mother_view.update(self)

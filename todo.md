@@ -1,7 +1,5 @@
 # done on last release
-- Support Lists.
-- Support Spacer.
-- Support new shapes: circle
+- Support local-images and URL-images.
 
 # todo
 - Support TextEditor.

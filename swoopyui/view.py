@@ -1,5 +1,5 @@
-
-
+import os
+import urllib.parse
 
 
 
@@ -48,6 +48,26 @@ class View (object):
                 del self.sub_views_history[num]
                 break
             num = num + 1
+    
+    def asset_path (self, path:str):
+        """
+        Use this to load a local file such as images, text files etc..
+
+        But make sure that the `app` class is taking the `base_name` as the main file `__name__`,
+        such as:
+
+        ```python
+        app (base_name=__name__)
+        ```
+        """
+        if not os.path.isfile (path):
+            raise FileNotFoundError ("The 'asset_path' must take a valid path.")
+        
+        original_string = path
+        encoded_string = urllib.parse.quote(original_string)
+        url_of_asset = f"http://127.0.0.1:{self.__app.app_port}/get_assets?path={encoded_string}"
+        return url_of_asset
+
 
     def get_new_view_id (self):
         """This will generate new viewID for the current and next view"""

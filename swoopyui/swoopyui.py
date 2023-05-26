@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_file
 import socketserver
 import tempfile
 import threading
@@ -56,6 +56,16 @@ class app:
                     update_number, 
                     action_name, 
                     action_content).load_as_dict()
+        
+
+        @flask_app.route("/get_assets")
+        def get_assets ():
+            path = request.values['path']
+            if os.path.isfile (path):
+                return send_file (path)
+            else:
+                return "error"
+
 
         @flask_app.route("/start_the_target_function")
         def start_the_target_function ():
@@ -82,6 +92,7 @@ class app:
 
         with socketserver.TCPServer(("localhost", 0), None) as s:
             free_port = s.server_address[1]
+            self.app_port = free_port
         
         if is_run_on_pyinstaller():
             self.current_tmp_dir = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
