@@ -1,5 +1,6 @@
 # done on last release
-- Support local-images and URL-images.
+- Support WebView.
+- Cancle the default animate of the page, and add a custom view called `AnimatedView`.
 
 # todo
 - Support TextEditor.
