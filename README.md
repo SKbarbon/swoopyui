@@ -1,11 +1,14 @@
 # swoopyui
-swoopyui is a python library that enable developers to easily build swiftUI apps in python. Its not need any swiftUI experience with no xcode require.
+swoopyui is a python library that enable developers to easily build swiftUI apps only in python. Its not need any swiftUI experience.
 
-## How does it work ?
-It works through two parts: a Python host for managing updates and a Swift client app for the front-end. The client app stays connected to the Python back-end to receive real-time front-end updates. With swoopyui, developers can build SwiftUI apps without worrying about Swift or Xcode, because everything is handled with just Python!.
+| Platforms   | Support     |
+| ----------- | ----------- |
+| MacOS       |     ✅      |
+| iOS & iPadOS|     ✅      |
+| AppleTV     |     🚧      |
+| AppleVision  |     ✅      |
 
 ## installation
-
 Enter this on terminal to install this package:
 
 ```zsh
@@ -25,15 +28,20 @@ def main (view:View):
 app(target=main, base_name=__name__)
 ```
 
-Are you ok now 🙃 ? fine lets start:
+Are you ok now 🙃 ? Lets start with the docs:
 
 - [The docs](https://github.com/SKbarbon/swoopyui/wiki)
 
-## ⚠️ help and contribute wanted!!
-Hi, read the docs, be master at this, it will be quick and easy..
+## Publishing
+1. Using xcode.
 
-I want help with:
-- Supporting iOS, we need to support iOS and iPadOS, so if you can help with this.
-- Add a secure connection strategy between the host and client.
+You can use the xcode project template to publish to iOS, iPadOS, Mac (Designed for iPad) and Apple Vision (Designed for iPad) all of that by one project.
+Follow the guidelines here: [soon]()
+
+2. Using pyinstaller (For mac only).
+
+You can use this approach for faster publishing, but its not recomended becuase swoopyui does not fully support it, thats why it will work but so much slower at the starting.
+## ⚠️ help and contribute wanted!!
+- A Secure connection strategy.
 
 Thanks, good luck..

@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "python-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kewlbear/Python-iOS.git",
+      "state" : {
+        "revision" : "ace19caa26a9fc7a1a666757852fd4f8050ac4df",
+        "version" : "0.0.20211030092316"
+      }
+    },
+    {
+      "identity" : "webviewkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielsaidi/WebViewKit.git",
+      "state" : {
+        "revision" : "3a289023c81167436058218006aea36fa5ad86cd",
+        "version" : "0.2.2"
+      }
+    }
+  ],
+  "version" : 2
+}
