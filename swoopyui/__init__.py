@@ -1,5 +1,7 @@
-from .tools.check_if_mac import is_device_a_mac
-if not is_device_a_mac():
+from .tools.check_platform import is_device_a_ios, is_device_a_mac
+if is_device_a_mac() or is_device_a_ios():
+    pass
+else:
     raise Exception ("Your device is not a mac. So cannot use this library.")
 
 from .swoopyui import app
