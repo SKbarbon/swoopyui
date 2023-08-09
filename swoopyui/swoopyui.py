@@ -98,6 +98,7 @@ class app:
             self.current_tmp_dir = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
         else:
             self.current_tmp_dir = tempfile.mkdtemp()
+        
         threading.Thread(target=run_swiftUI_on_new_process, args=[free_port, self.current_tmp_dir]).start()
         flask_app.run(port=free_port)
     
