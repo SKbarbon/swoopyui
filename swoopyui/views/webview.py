@@ -8,7 +8,7 @@ class WebView (object):
 
     https://github.com/danielsaidi/WebViewKit.git
     """
-    def __init__(self, value:str, resizeable:bool=False, width:float|int=150, height:float|int=150) -> None:
+    def __init__(self, value:str, resizeable:bool=False, width:float=150, height:float=150) -> None:
         self.__last_view_id = None # This is used becuase swiftUI will not know that this updated without it
         self.__id = None
         self.__mother_view = None

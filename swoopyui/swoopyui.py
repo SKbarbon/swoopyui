@@ -7,22 +7,26 @@ import shutil
 import os
 import sys
 
-from .protocol import onClientRequestUpdate
+from .api.process_requests import ProcessRequest
 from .tools.run_target import run_the_target
 from .tools.run_swiftUI import run_swiftUI_app
+from .tools.run_swiftUI_ios import prepare_swiftUI_for_ios
 from .tools.pyinstaller_check import is_run_on_pyinstaller
 from .view import View
      
      
 def run_swiftUI_on_new_process (PORT, tmp_dir):
-    if not os.path.isdir (tmp_dir):
+    if not os.path.isdir (tmp_dir) and "swoopyui-ios" not in sys.argv:
         print("Cannot found the temp dir.")
         os._exit(0)
-    run_swiftUI_app(PORT, tmp_dir)
+    if "swoopyui-ios" in sys.argv:
+        prepare_swiftUI_for_ios(port=PORT)
+    else:
+        run_swiftUI_app(PORT, tmp_dir)
 
 class app:
     """This is the main function of the app, the function that will run the app and show the window"""
-    def __init__(self, target, base_name=__name__) -> None:
+    def __init__(self, target, base_name="__main__") -> None:
         self.__main_view = View(app=self)
         self.__target_function = target
         self.__base_name = base_name
@@ -41,21 +45,11 @@ class app:
 
         @flask_app.route("/", methods=["POST"])
         def index ():
-            if self.__all_waited_updates == []:
-                return onClientRequestUpdate(
-                    self.__update_number, 
-                    "", 
-                    {"empty":True}).load_as_dict()
-            else:
-                next_update = self.__all_waited_updates[0]
-                action_name = next_update["action"]
-                action_content = next_update["action_content"]
-                update_number = next_update["update_number"]
-                del self.__all_waited_updates[0]
-                return onClientRequestUpdate(
-                    update_number, 
-                    action_name, 
-                    action_content).load_as_dict()
+            return ProcessRequest({}, 
+                                  request_name="/", 
+                                  all_waited_updates=self.__all_waited_updates,
+                                  update_number=self.__update_number
+                                ).process_get_updates()
         
 
         @flask_app.route("/get_assets")
@@ -69,16 +63,15 @@ class app:
 
         @flask_app.route("/start_the_target_function")
         def start_the_target_function ():
-            threading.Thread(target=run_the_target, args=[self.__target_function, [self.__main_view], self], daemon=True).start()
+            if "swoopyui-ios" in sys.argv:
+                run_the_target(self.__target_function, [self.__main_view], self)
+            else:
+                threading.Thread(target=run_the_target, args=[self.__target_function, [self.__main_view], self], daemon=True).start()
             return ""
         
         @flask_app.route("/client_side_update", methods=["POST"])
         def client_side_update():
-            """This will be called on client side update. Like when user click a button this will be called"""
-            json_data = request.get_json()
-            update_name = json_data.get('update_name')
-            if update_name == "on_view_action":
-                self.__main_view.manage_on_view_action(json_data.get("update_content"))
+            ProcessRequest({}, request_name="/client_side_update", all_waited_updates=[], main_view=self.__main_view, update_number=self.__update_number).process_client_side_update(request=request)
             return ""
 
         
@@ -97,9 +90,14 @@ class app:
         if is_run_on_pyinstaller():
             self.current_tmp_dir = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
         else:
-            self.current_tmp_dir = tempfile.mkdtemp()
+            if not "swoopyui-ios" in sys.argv:
+                self.current_tmp_dir = tempfile.mkdtemp()
         
-        threading.Thread(target=run_swiftUI_on_new_process, args=[free_port, self.current_tmp_dir]).start()
+        if "swoopyui-ios" in sys.argv:
+            run_swiftUI_on_new_process(PORT=free_port, tmp_dir="")
+        else:
+            threading.Thread(target=run_swiftUI_on_new_process, args=[free_port, self.current_tmp_dir]).start()
+
         flask_app.run(port=free_port)
     
     def set_for_the_next_update_get (self, action_name:str, action_content:dict):
