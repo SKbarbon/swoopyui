@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct TheIconView: View {
+    @State var host_port : Int
+    @State var textData : SwoopyView
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image(systemName: "\(textData.image_name!)")
+            .resizable()
+            .frame(width: CGFloat(textData.width ?? 15), height: CGFloat(textData.height ?? 15))
+            .foregroundColor(getColorFromString(colorName: textData.fgcolor!))
     }
-}
-
-#Preview {
-    TheIconView()
 }

@@ -36,4 +36,5 @@ struct SwoopyView : Codable, Equatable {
     var scall_to_fit : Bool?
     var value : String?
     var resizeable : Bool?
+    var is_presented : Bool?
 }

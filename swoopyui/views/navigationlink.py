@@ -5,13 +5,14 @@ from ..tools.on_action import on_view_action
 
 class NavigationLink (object):
     """A view that controls a navigation presentation."""
-    def __init__(self, title:str="Navigate", on_navigate=None) -> None:
+    def __init__(self, title:str="Navigate", is_presented:bool = False, on_navigate=None) -> None:
         self.__last_view_id = None # This is used becuase swiftUI will not know that this updated without it
         self.__id = None
         self.__mother_view = None
         self.__parent_view = None
 
         self.on_navigate = on_navigate
+        self.__is_presented = is_presented
         self.__title = title
         self.__subviews = []
     
@@ -24,6 +25,7 @@ class NavigationLink (object):
             "view_id" : self.__id,
             "vname" : "NavigationLink",
             "title" : self.__title,
+            "is_presented" : self.__is_presented,
             "sub_views" : all_sub_views
         }
     
@@ -79,6 +81,21 @@ class NavigationLink (object):
             raise Exception("Cannot change the sub_view property while its not on the screen.")
         
         self.__title = value
+        self.__id = self.__mother_view.get_new_view_id()
+        self.__mother_view.update(self)
+        self.__last_view_id = self.__id
+    
+
+    @property
+    def is_presented (self):
+        return self.__is_presented
+    
+    @is_presented.setter
+    def is_presented (self, value:bool):
+        if self.__mother_view == None:
+            raise Exception("Cannot change the sub_view property while its not on the screen.")
+        
+        self.__is_presented = value
         self.__id = self.__mother_view.get_new_view_id()
         self.__mother_view.update(self)
         self.__last_view_id = self.__id

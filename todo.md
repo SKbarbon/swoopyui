@@ -1,9 +1,9 @@
 # done on last release
-- Support WebView.
-- Cancle the default animate of the page, and add a custom view called `AnimatedView`.
+- Support new swiftUI NavigationLink.
+- Remove the Text on_hover.
+- Support Icons.
 
 # todo
 - Support TextEditor.
-- Support Icons.
 - Support Menus
 - Support ContextMenu
