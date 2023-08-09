@@ -1,1 +1,0 @@
-# This folder will be used as your app, its will be called as a module
