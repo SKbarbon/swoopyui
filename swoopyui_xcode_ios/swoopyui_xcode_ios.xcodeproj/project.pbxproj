@@ -42,6 +42,10 @@
 		AA29AD4E2A83BFE20097C379 /* TheTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA29AD3E2A83BFE10097C379 /* TheTextField.swift */; };
 		AA29AD4F2A83BFE20097C379 /* TheWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA29AD3F2A83BFE10097C379 /* TheWebView.swift */; };
 		AA29AD502A83BFE20097C379 /* TheNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA29AD402A83BFE10097C379 /* TheNavigationLink.swift */; };
+		AA29AD552A83C1300097C379 /* AllViews in Resources */ = {isa = PBXBuildFile; fileRef = AA29AD512A83C1300097C379 /* AllViews */; };
+		AA29AD562A83C1300097C379 /* json_settings in Resources */ = {isa = PBXBuildFile; fileRef = AA29AD522A83C1300097C379 /* json_settings */; };
+		AA29AD572A83C1300097C379 /* Tools in Resources */ = {isa = PBXBuildFile; fileRef = AA29AD532A83C1300097C379 /* Tools */; };
+		AA29AD582A83C1300097C379 /* Pages in Resources */ = {isa = PBXBuildFile; fileRef = AA29AD542A83C1300097C379 /* Pages */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +85,10 @@
 		AA29AD3E2A83BFE10097C379 /* TheTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheTextField.swift; sourceTree = "<group>"; };
 		AA29AD3F2A83BFE10097C379 /* TheWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheWebView.swift; sourceTree = "<group>"; };
 		AA29AD402A83BFE10097C379 /* TheNavigationLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheNavigationLink.swift; sourceTree = "<group>"; };
+		AA29AD512A83C1300097C379 /* AllViews */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AllViews; path = "../../swoopyui_xcode/swoopyui copy/AllViews"; sourceTree = "<group>"; };
+		AA29AD522A83C1300097C379 /* json_settings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = json_settings; path = "../../swoopyui_xcode/swoopyui copy/json_settings"; sourceTree = "<group>"; };
+		AA29AD532A83C1300097C379 /* Tools */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Tools; path = "../../swoopyui_xcode/swoopyui copy/Tools"; sourceTree = "<group>"; };
+		AA29AD542A83C1300097C379 /* Pages */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Pages; path = "../../swoopyui_xcode/swoopyui copy/Pages"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +126,11 @@
 				AA29AD222A83BFC60097C379 /* AllViews */,
 				AA29AD202A83BFC60097C379 /* json_settings */,
 				AA29AD232A83BFC60097C379 /* Pages */,
+				AA29AD542A83C1300097C379 /* Pages */,
 				AA29AD262A83BFC60097C379 /* Tools */,
+				AA29AD512A83C1300097C379 /* AllViews */,
+				AA29AD522A83C1300097C379 /* json_settings */,
+				AA29AD532A83C1300097C379 /* Tools */,
 				AA10F5ED2A828BE8000D6775 /* swoopyui_xcode_ios.entitlements */,
 				AA28504D2A818A5C00E9A4C5 /* utils */,
 				AA28502F2A81755E00E9A4C5 /* AppDelegate.swift */,
@@ -272,10 +284,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA29AD572A83C1300097C379 /* Tools in Resources */,
 				AA28504C2A8176F400E9A4C5 /* python_connection.py in Resources */,
 				AA28503C2A81756100E9A4C5 /* LaunchScreen.storyboard in Resources */,
 				AA2850392A81756100E9A4C5 /* Assets.xcassets in Resources */,
+				AA29AD552A83C1300097C379 /* AllViews in Resources */,
+				AA29AD582A83C1300097C379 /* Pages in Resources */,
 				AA2850372A81755E00E9A4C5 /* Main.storyboard in Resources */,
+				AA29AD562A83C1300097C379 /* json_settings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
