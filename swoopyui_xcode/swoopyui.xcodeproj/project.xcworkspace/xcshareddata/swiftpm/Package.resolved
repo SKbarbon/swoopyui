@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "webviewkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielsaidi/WebViewKit.git",
+      "state" : {
+        "revision" : "3a289023c81167436058218006aea36fa5ad86cd",
+        "version" : "0.2.2"
+      }
+    }
+  ],
+  "version" : 2
+}
