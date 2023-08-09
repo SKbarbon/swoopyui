@@ -20,6 +20,8 @@ struct SwoopyView : Codable, Equatable {
     var view_id : Int
     var vname : String
     var text : String?
+    var detail_view_title : String?
+    var navigationsplitview_content_title : String?
     var title : String?
     var placeholder : String?
     var fgcolor : String?
@@ -27,6 +29,9 @@ struct SwoopyView : Codable, Equatable {
     var width : Float?
     var height : Float?
     var sub_views : [SwoopyView]?
+    var skin_views : [SwoopyView]?
+    var detail_views : [SwoopyView]?
+    var content_views : [SwoopyView]?
     var stack_type : String?
     var bold : Bool?
     var size : Float?
@@ -37,4 +42,5 @@ struct SwoopyView : Codable, Equatable {
     var value : String?
     var resizeable : Bool?
     var is_presented : Bool?
+    var support_navigationsplitview_content : Bool?
 }

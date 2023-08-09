@@ -21,5 +21,7 @@ from .views.list import List
 from .views.image import Image
 from .views.webview import WebView
 from .views.animatedview import AnimatedView
+from .views.icon import Icon
+from .views.navigationsplitview import NavigationSplitView
 
 from .views.shapes.circle import Circle

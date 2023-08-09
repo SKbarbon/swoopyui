@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA1A2ED32A83A4A400CBBAD3 /* TheIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A2ED22A83A4A400CBBAD3 /* TheIconView.swift */; };
+		AA1A2F122A83B70100CBBAD3 /* thenavigationsplitview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1A2F112A83B70100CBBAD3 /* thenavigationsplitview.swift */; };
 		AA36E5382A0ABB4100E98505 /* swoopyuiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36E5372A0ABB4100E98505 /* swoopyuiApp.swift */; };
 		AA36E53A2A0ABB4100E98505 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA36E5392A0ABB4100E98505 /* ContentView.swift */; };
 		AA36E53C2A0ABB4100E98505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA36E53B2A0ABB4100E98505 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		AA1A2ED22A83A4A400CBBAD3 /* TheIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheIconView.swift; sourceTree = "<group>"; };
+		AA1A2F112A83B70100CBBAD3 /* thenavigationsplitview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thenavigationsplitview.swift; sourceTree = "<group>"; };
 		AA36E5342A0ABB4100E98505 /* swoopyui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swoopyui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA36E5372A0ABB4100E98505 /* swoopyuiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swoopyuiApp.swift; sourceTree = "<group>"; };
 		AA36E5392A0ABB4100E98505 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				AAE5C5DB2A476C05002C604D /* TheWebView.swift */,
 				AAE5C5DD2A4772E8002C604D /* TheAnimatedView.swift */,
 				AA1A2ED22A83A4A400CBBAD3 /* TheIconView.swift */,
+				AA1A2F112A83B70100CBBAD3 /* thenavigationsplitview.swift */,
 			);
 			path = AllViews;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				AAFF5CE12A175027009C2892 /* ColorsGet.swift in Sources */,
 				AAC0369A2A1A258000C79003 /* TheScrollView.swift in Sources */,
 				AAFF5CDE2A174EF5009C2892 /* TheTextView.swift in Sources */,
+				AA1A2F122A83B70100CBBAD3 /* thenavigationsplitview.swift in Sources */,
 				AA1A2ED32A83A4A400CBBAD3 /* TheIconView.swift in Sources */,
 				AAD2C79B2A16B1910075B36B /* OnErrorView.swift in Sources */,
 				AAC036982A1A03F200C79003 /* TheStackView.swift in Sources */,

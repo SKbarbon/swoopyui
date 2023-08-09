@@ -1,42 +1,50 @@
 from ..tools.on_action import on_view_action
 
 
-
-
-class NavigationLink (object):
-    """A view that controls a navigation presentation."""
-    def __init__(self, title:str="Navigate", is_presented:bool = False, on_navigate=None) -> None:
+class NavigationSplitView (object):
+    """
+    A view that presents views in two or three columns, where selections in leading columns control presentations in subsequent columns.
+    """
+    def __init__(self, title:str="", support_content:bool=False, content_title:str="", detail_view_title:str="") -> None:
         self.__last_view_id = None # This is used becuase swiftUI will not know that this updated without it
         self.__id = None
-        self.__mother_view = None
         self.__parent_view = None
+        self.__mother_view = None
 
-        self.on_navigate = on_navigate
-        self.__is_presented = is_presented
         self.__title = title
+        self.detail_view_title =  detail_view_title
+        self.support_content = support_content
+        self.content_title = content_title
 
         self.__subviews = []
-        self.__skinviews = []
+        self.__detailviews = []
+        self.__contentviews = []
     
     def get_dict_content (self):
         all_sub_views = []
-        all_skin_views = []
+        all_detail_views = []
+        all_content_views = []
         for sv in self.__subviews:
             all_sub_views.append(sv.get_dict_content())
         
-        for skv in self.__skinviews:
-            all_skin_views.append(skv.get_dict_content())
+        for detv in self.__detailviews:
+            all_detail_views.append(detv.get_dict_content())
         
+        for conv in self.__contentviews:
+            all_content_views.append(conv.get_dict_content())
         return {
             "last_view_id" : self.__last_view_id,
             "view_id" : self.__id,
-            "vname" : "NavigationLink",
+            "vname" : "NavigationSplitView",
             "title" : self.__title,
-            "is_presented" : self.__is_presented,
             "sub_views" : all_sub_views,
-            "skin_views" : all_skin_views
+            "support_navigationsplitview_content" : self.support_content,
+            "detail_views" : all_detail_views,
+            "content_views" : all_content_views,
+            "detail_view_title" : self.detail_view_title,
+            "navigationsplitview_content_title" : self.content_title
         }
-    
+
     def respown (self, new_id=None, mother_view=None, parent=None):
         if new_id == None: return
         if mother_view == None: return
@@ -53,7 +61,7 @@ class NavigationLink (object):
             self.__parent_view = parent
     
     def add (self, *sub_view):
-        """Add sub-views to the page the the user will be navigate to using this linker."""
+        """Add a new subview to be inside this NavigationStack."""
         if self.__mother_view == None:
             raise Exception("Cannot add sub-views while this view not have an active mother view.")
         
@@ -62,57 +70,51 @@ class NavigationLink (object):
             self.__mother_view.sub_views_history.append(subv)
             self.__subviews.append(subv)
     
-    def add_skin_view (self, *skin_view):
-        """Add a skin-view, its a sub-view that will be a part of the navigationLink look."""
+    def add_content_view (self, *content_view):
+        """If `support_content = True`, then you can use this function to add new views to the content section"""
         if self.__mother_view == None:
             raise Exception("Cannot add sub-views while this view not have an active mother view.")
         
-        for skv in skin_view:
-            skv.respown (new_id=self.__mother_view.get_new_view_id(), mother_view=self.__mother_view, parent=self)
-            self.__skinviews.append(skv)
+        for conv in content_view:
+            conv.respown (new_id=self.__mother_view.get_new_view_id(), mother_view=self.__mother_view, parent=self)
+            self.__mother_view.sub_views_history.append(conv)
+            self.__contentviews.append(conv)
+    
+    def add_detail_view (self, *detail_view):
+        """Add a subview to the detailt section"""
+        if self.__mother_view == None:
+            raise Exception("Cannot add sub-views while this view not have an active mother view.")
+        
+        for detv in detail_view:
+            detv.respown (new_id=self.__mother_view.get_new_view_id(), mother_view=self.__mother_view, parent=self)
+            self.__mother_view.sub_views_history.append(detv)
+            self.__detailviews.append(detv)
     
     def view_action (self, action_data):
         action_name = action_data['action_name']
-        if action_name == "on_navigate":
-            on_view_action(self.on_navigate, [self])
+        if action_name == "on_appear":
+            on_view_action(self.on_appear, [self])
     
     def update (self):
         self.__id = self.__mother_view.get_new_view_id()
         self.__mother_view.update(self)
         self.__last_view_id = self.__id
-        
-        self.__parent_view.update()
 
+        self.__parent_view.update()
+    
     @property
     def id (self):
         return self.__id
     
-
     @property
-    def title (self):
-        return self.__title
-    
+    def title (self): return self.__title
+
     @title.setter
     def title (self, value):
         if self.__mother_view == None:
             raise Exception("Cannot change the sub_view property while its not on the screen.")
         
         self.__title = value
-        self.__id = self.__mother_view.get_new_view_id()
-        self.__mother_view.update(self)
-        self.__last_view_id = self.__id
-    
-
-    @property
-    def is_presented (self):
-        return self.__is_presented
-    
-    @is_presented.setter
-    def is_presented (self, value:bool):
-        if self.__mother_view == None:
-            raise Exception("Cannot change the sub_view property while its not on the screen.")
-        
-        self.__is_presented = value
         self.__id = self.__mother_view.get_new_view_id()
         self.__mother_view.update(self)
         self.__last_view_id = self.__id

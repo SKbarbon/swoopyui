@@ -30,6 +30,8 @@ func GetTheDataView (swoopyuiViewData:SwoopyView, hostPort:Int) -> AnyView {
         return AnyView(TheAnimatedView(host_port: hostPort, textData: swoopyuiViewData))
     }else if swoopyuiViewData.vname == "Icon" {
         return AnyView(TheIconView(host_port: hostPort, textData: swoopyuiViewData))
+    }else if swoopyuiViewData.vname == "NavigationSplitView" {
+        return AnyView(TheNavigationSplitView(host_port: hostPort, textData: swoopyuiViewData))
     }
     // shapes
     else if swoopyuiViewData.vname == "Circle" {
