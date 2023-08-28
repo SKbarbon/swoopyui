@@ -9,19 +9,25 @@ from .swoopyui import app
 from .view import View
 
 from .views.text import Text
+from .views.vstack import VStack
+from .views.hstack import HStack
+from .views.navigationsplitview import NavigationSplitView
 from .views.button import Button
-from .views.navigationview import NavigationView
-from .views.navigationstack import NavigationStack
 from .views.navigationlink import NavigationLink
 from .views.textfield import TextField
-from .views.stack import Stack, VSTACK, HSTACK, ZSTACK
-from .views.scrollview import ScrollView
+from .views.scrollview import ScrollView, ScrollModeHorizontal, ScrollModeVertical
+from .views.colorview import ColorView
 from .views.spacer import Spacer
 from .views.list import List
-from .views.image import Image
-from .views.webview import WebView
-from .views.animatedview import AnimatedView
+from .views.sheet import Sheet
+from .views.elevatedbutton import ElevatedButton
+from .views.textbutton import TextButton
+from .views.label import Label
 from .views.icon import Icon
-from .views.navigationsplitview import NavigationSplitView
+# from .views.navigationstack import NavigationStack
+# from .views.image import Image
+# from .views.webview import WebView
+# from .views.animatedview import AnimatedView
 
-from .views.shapes.circle import Circle
+# shapes views
+from .views.shapes.roundedrectangleshape import RoundedRectangleShape

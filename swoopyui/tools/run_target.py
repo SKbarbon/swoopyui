@@ -1,12 +1,12 @@
+import traceback
 
 
 
 
 
-
-def run_the_target (target_function, function_args, app_class):
+def run_the_target (target_function, function_args):
     try:
         target_function(*function_args)
     except Exception as e:
-        app_class.set_for_the_next_update_get("error", {"error_describe":f"Error: {str(e)}"})
+        traceback.print_exc()
         raise Exception(e)

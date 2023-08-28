@@ -1,8 +1,8 @@
+from .check_platform import is_device_a_ios
 import threading
 
 
 
-
 def on_view_action (function, args):
-    threading.Thread(target=function, args=[*args], daemon=True).start()
-    return True
+    if function == None: return
+    threading.Thread(target=function, args=[*args]).start()

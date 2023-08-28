@@ -3,22 +3,15 @@ URL command: "/start_the_target_function"
 METHOD: POST.
 
 # To push new updates to client.
-URL command: "/"
-METHOD: POST only.
-data: {
-    "update_number" : <int>,
-    "action_name" : <str>,
-    "action_content" : <dict>
-}
 
-# To get new updates from client.
-URL command: "/client_side_update"
-METHOD: POST only.
-data: {
-    "update_name" : <str>,
-    "update_content" : <dict>
-}
 
-# To close the app.
-URL command: "/close_the_app"
-METHOD: GET
+
+
+# from client update
+{
+    "action" : "view_event",
+    "view_id" : 0,
+    "event_content" : {
+        "name" : "on_click"
+    }
+}

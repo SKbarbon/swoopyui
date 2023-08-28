@@ -1,84 +1,92 @@
-import os
-import urllib.parse
-
+from .views.subview import SubView
+from .protocol import onAddNewSubViewRequest, onUpdateSubviewProps
 
 
 class View (object):
-    def __init__(self, app) -> None:
-        self.__app = app
-        self.__next_id = 0 #? The next viewID.
+    def __init__(self, host_port, host_app_class) -> None:
+        self.__host_app_class = host_app_class
+        self.host_port = host_port
 
-        # View props
-        self.sub_views_history = [] # This will store all sub_views even from the another subviews.
-        self.sub_views = []
-    
-    def update (self, sub_view=None):
-        if sub_view != None:
-            action_content = {
-                "new_view_content" : sub_view.get_dict_content()
-            }
-            self.__app.set_for_the_next_update_get (action_name="update_view", action_content=action_content)
+        self.platform = None #? The platform that running swiftUI.
+        self.theme_mode = None #? The theme mode of the app, like light mode or dark mode.
 
-    def add (self, view):
-        view.respown (new_id=self.get_new_view_id(), mother_view=self, parent=self)
-        action_content = {
-            "new_view_content" : view.get_dict_content()
-        }
-        self.__app.set_for_the_next_update_get (action_name="add_view", action_content=action_content)
-        self.sub_views_history.append(view)
-        self.sub_views.append(view)
-    
-    def clear (self):
-        for sbv in self.sub_views:
-            action_content = {
-                "view_id" : sbv.id
-            }
-            self.__app.set_for_the_next_update_get (action_name="delete_view", action_content=action_content)
-    
-    def delete (self, view):
-        """Delete a sub-view from the view"""
-        action_content = {
-            "view_id" : view.id
-        }
-        self.__app.set_for_the_next_update_get (action_name="delete_view", action_content=action_content)
+        self.__subviews_history = [] #? All the subviews that have been added directly or not directly on currently connected swiftUI app.
+        self.__last_id = 0
+        self.__last_update_id = 0
         
-        num = 0
-        for v in self.sub_views_history:
-            if v.id == view.id:
-                del self.sub_views_history[num]
-                break
-            num = num + 1
+        self.subviews = []
     
-    def asset_path (self, path:str):
-        """
-        Use this to load a local file such as images, text files etc..
-
-        But make sure that the `app` class is taking the `base_name` as the main file `__name__`,
-        such as:
-
-        ```python
-        app (base_name=__name__)
-        ```
-        """
-        if not os.path.isfile (path):
-            raise FileNotFoundError ("The 'asset_path' must take a valid path.")
+    def add (self, subview:SubView):
+        """Add a new subview to the main view."""
+        subview.respown(
+            new_id=self.get_new_subview_id(),
+            update_id=self.get_new_subview_update_id(),
+            parent_view=self,
+            main_view=self
+        )
+        self.subviews.append(subview)
+        self.__subviews_history.append(subview)
         
-        original_string = path
-        encoded_string = urllib.parse.quote(original_string)
-        url_of_asset = f"http://127.0.0.1:{self.__app.app_port}/get_assets?path={encoded_string}"
-        return url_of_asset
-
-
-    def get_new_view_id (self):
-        """This will generate new viewID for the current and next view"""
-        self.__next_id = self.__next_id + 1
-        current = self.__next_id
-        self.__next_id = self.__next_id + 1
-        return current
+        self.__add_to_next_update_requests(onAddNewSubViewRequest(subview=subview).raw)
+        subview.update()
     
-    def manage_on_view_action (self, action_content:dict):
-        view_id = action_content['view_id']
-        for v in self.sub_views_history:
-            if v.id == view_id:
-                v.view_action(action_content)
-                break
+    def remove (self, subview:SubView):
+        """Remove a subview from the swiftUI app."""
+    
+    def get_subview_by_id (self, subview_id:int):
+        """This function will search for the subviewID in the subviews history.
+        
+        If there is no result it will return `None`.
+        """
+        for sbv in self.__subviews_history:
+            if sbv.id == subview_id:
+                return sbv
+        return None
+    
+
+    def get_new_subview_id (self):
+        self.__last_id = self.__last_id + 1
+        return self.__last_id
+    
+    def get_new_subview_update_id (self):
+        self.__last_update_id = self.__last_update_id + 1
+        return self.__last_update_id
+
+    
+    def update (self, subview:SubView=None):
+        if subview == None:
+            pass
+        else:
+            subview.update_id = self.get_new_subview_update_id()
+            subview.vdata['update_id'] = subview.update_id
+            self.__add_to_next_update_requests(update_dict=onUpdateSubviewProps(subview=subview).raw)
+    
+
+    def add_to_subviews_history (self, subv:SubView):
+        self.__subviews_history.append(subv)
+    
+    
+    def process_client_events (self, event_dict:dict):
+        if event_dict['action'] == "view_event":
+            subview_id = int(event_dict['view_id'])
+            subview_class = None
+            for sbv in self.__subviews_history:
+                sbv : SubView = sbv
+                if int(sbv.id) == int(subview_id):
+                    subview_class = sbv
+                    break
+            subview_class.on_event(event_dict['event_content'])
+        
+        elif event_dict['action'] == "startup_app_info":
+            self.platform = event_dict['content']['platform']
+
+
+    def __add_to_next_update_requests(self, update_dict):
+        """Add an update request to the client."""
+        print(update_dict)
+        self.__host_app_class.next_get_updates_responses.append(update_dict)
+    
+
+    @property
+    def next_updates (self):
+        return self.__next_updates

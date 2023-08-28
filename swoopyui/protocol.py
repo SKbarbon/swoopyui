@@ -1,25 +1,28 @@
+from .views.subview import SubView
 
 
 
+class onAddNewSubViewRequest:
+    def __init__(self, subview:SubView) -> None:
+        if subview.parent_view == None: return
 
+        to_id = ""
+        if subview.parent_view == subview.main_view:
+            to_id = "main"
+        else:
+            to_id = str(subview.parent_view.id)
 
-class onClientRequestUpdate:
-    def __init__(self, update_number, action_name, action_content) -> None:
-        self.update_number = update_number
-        self.action_name = action_name
-        self.action_content = action_content
-    
-    def load_as_dict (self):
-        return {
-            "update_number" : self.update_number,
-            "action" : {
-                "name" : str(self.action_name),
-                "content" : self.action_content
-            }
+        self.raw = {
+            "action" : "add_subview",
+            "to_id" : to_id,
+            "subview_data" : subview.vdata
         }
 
 
-class ClientSideUpdate:
-    def __init__(self, dict) -> None:
-        self.update_name = dict["update_name"]
-        self.content = dict["content"]
+class onUpdateSubviewProps:
+    def __init__(self, subview:SubView) -> None:
+        self.raw = {
+            "action" : "update_subview",
+            "subview_data" : subview.vdata
+        }
+    
