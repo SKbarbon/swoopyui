@@ -2,10 +2,11 @@ from .tools.swoopyui_host import swoopyui_host_setup
 from .tools.check_platform import is_device_a_ios, is_device_a_mac
 from .tools.run_target import run_the_target
 from .tools.run_swiftUI_ios import prepare_swiftUI_for_ios
+from .tools.run_swiftUI import run_swiftUI_app
 from .tools.get_free_port import get_free_port
 from .view import View
 from flask import Flask, request
-import logging, threading
+import logging, threading, tempfile
 
 
 
@@ -55,5 +56,9 @@ class app:
 
         if is_device_a_ios():
             prepare_swiftUI_for_ios(port=self.host_port)
+        
+        elif is_device_a_mac():
+            tmp_dir = tempfile.mkdtemp()
+            threading.Thread(target=run_swiftUI_app, args=[self.host_port, tmp_dir], daemon=True).start()
 
         flask_app.run(host="localhost", port=self.host_port)
