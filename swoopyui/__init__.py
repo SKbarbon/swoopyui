@@ -24,6 +24,10 @@ from .views.elevatedbutton import ElevatedButton
 from .views.textbutton import TextButton
 from .views.label import Label
 from .views.icon import Icon
+from .views.contextmenu import ContextMenu
+from .views.labeledbutton import LabeledButton
+from .views.menu import Menu
+from .views.scrollingtabview import ScrollingTabView
 # from .views.navigationstack import NavigationStack
 # from .views.image import Image
 # from .views.webview import WebView

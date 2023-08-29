@@ -1,24 +1,19 @@
-from .subview import SubView
+from .subviewparent import SubViewParent
 
 
 
-
-class SubViewParent (SubView):
-    """The `SubViewParent` is a subview that have the abiliy to add another subviews inside it."""
+class ContextMenu (SubViewParent):
+    """A """
     def __init__(self) -> None:
         super().__init__()
 
-        self.subviews = []
         self.vdata.update({
-            "sub_views" : [],
-            "sub_views2" : [],
-            "sub_views3" : [],
-            "sub_views4" : []
+            "name" : "ContextMenu"
         })
-    
 
-    def add (self, subviews:list):
-        """Add a new subview to this view."""
+    
+    def add_to_context_menu (self, subviews:list):
+        """Add a new subview to the context menu."""
         if self.parent_view == None or self.main_view == None: return
 
         for subview in subviews:
@@ -29,10 +24,7 @@ class SubViewParent (SubView):
                 main_view=self.main_view
             )
             self.subviews.append(subview)
-            self.vdata['sub_views'].append(subview.vdata)
+            self.vdata['sub_views2'].append(subview.vdata)
 
             self.main_view.add_to_subviews_history(subview)
         self.update()
-
-    def update(self):
-        return super().update()
