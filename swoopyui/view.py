@@ -83,7 +83,7 @@ class View (object):
 
     def __add_to_next_update_requests(self, update_dict):
         """Add an update request to the client."""
-        print(update_dict)
+        # print(update_dict)
         self.__host_app_class.next_get_updates_responses.append(update_dict)
     
 

@@ -6,15 +6,16 @@ from .tools.run_swiftUI import run_swiftUI_app
 from .tools.get_free_port import get_free_port
 from .view import View
 from flask import Flask, request
-import logging, threading, tempfile
+import logging, threading, tempfile, time
 
 
 
 class app:
-    def __init__(self, target, base_name="__main__", debug:bool=False) -> None:
+    def __init__(self, target, base_name="__main__", debug:bool=False, for_preview=False) -> None:
         self.target_function = target
         self.base_name = base_name
         self.debug = debug
+        self.for_preview = for_preview
 
         self.host_port = get_free_port()
         self.next_get_updates_responses = []
@@ -30,7 +31,7 @@ class app:
         flask_app = self.flask_app
 
         # Set the logging level to ignore warnings
-        if self.debug == False:
+        if self.debug == False and self.for_preview == False:
             log = logging.getLogger('werkzeug')
             log.setLevel(logging.ERROR)
         
@@ -52,13 +53,23 @@ class app:
         def push_update():
             self.client_view.process_client_events(request.json)
             return ""
-        
 
-        if is_device_a_ios():
+
+        if is_device_a_ios() and self.for_preview == False:
             prepare_swiftUI_for_ios(port=self.host_port)
         
-        elif is_device_a_mac():
+        elif is_device_a_mac() and self.for_preview == False:
             tmp_dir = tempfile.mkdtemp()
             threading.Thread(target=run_swiftUI_app, args=[self.host_port, tmp_dir], daemon=True).start()
 
-        flask_app.run(host="localhost", port=self.host_port)
+        if self.for_preview:
+            print("Your preview host ready, this is the host data:\n\n")
+            threading.Thread(target=self.no_logging_after_3_sec).start()
+            flask_app.run(host="0.0.0.0", port=self.host_port)
+        else:
+            flask_app.run(host="localhost", port=self.host_port)
+    
+    def no_logging_after_3_sec (self):
+        time.sleep(3)
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.ERROR)
