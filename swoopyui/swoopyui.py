@@ -6,7 +6,7 @@ from .tools.run_swiftUI import run_swiftUI_app
 from .tools.get_free_port import get_free_port
 from .view import View
 from flask import Flask, request
-import logging, threading, tempfile, time
+import logging, threading, tempfile, time, shutil, os
 
 
 
@@ -23,6 +23,7 @@ class app:
         self.client_view = View(host_port=self.host_port, host_app_class=self)
 
         # start the host
+        self.tmp_dir = ""
         print("Host started..")
         self.host()
 
@@ -53,6 +54,18 @@ class app:
         def push_update():
             self.client_view.process_client_events(request.json)
             return ""
+            
+        @flask_app.route('/shutdown')
+        def shutdown():
+            """Close the swoopyui host and delete the client app."""
+            if os.path.isdir(self.tmp_dir):
+                shutil.rmtree(self.tmp_dir)
+                if self.debug:
+                    print("swoopyui tmp dir deleted!")
+                    print("host will close now!")
+            
+            os._exit(0)
+            return 'Server shutting down...'
 
 
         if is_device_a_ios() and self.for_preview == False:
@@ -60,6 +73,7 @@ class app:
         
         elif is_device_a_mac() and self.for_preview == False:
             tmp_dir = tempfile.mkdtemp()
+            self.tmp_dir = tmp_dir
             threading.Thread(target=run_swiftUI_app, args=[self.host_port, tmp_dir], daemon=True).start()
 
         if self.for_preview:
