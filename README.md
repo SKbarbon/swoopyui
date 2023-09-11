@@ -5,7 +5,7 @@ swoopyui is a python library that enable developers to easily build swiftUI apps
 
 | Platforms   | Support     |
 | ----------- | ----------- |
-| MacOS       |     🚧      |
+| MacOS       |     ✅      |
 | MacOS(Designed for iPad)  |     ✅      |
 | iOS & iPadOS|     ✅      |
 | AppleTV     |     🚧      |
