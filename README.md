@@ -32,8 +32,9 @@ def main (view:View):
 app(target=main)
 ```
 
-Start with this roadmap:
-- Simple `swoopyui` app.
+Start with this learning-roadmap:
+- [Simple `swoopyui` app](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/simple_app.md)
+- Soon
 
 ## Publishing
 1. Using xcode.
