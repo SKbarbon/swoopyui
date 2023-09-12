@@ -81,6 +81,11 @@ class View (object):
             self.platform = event_dict['content']['platform']
 
 
+    def subview_reverse_event (self, update_dict):
+        """It when the subview request an event from the python side into the swift side."""
+        self.__add_to_next_update_requests(update_dict=update_dict)
+
+
     def __add_to_next_update_requests(self, update_dict):
         """Add an update request to the client."""
         # print(update_dict)

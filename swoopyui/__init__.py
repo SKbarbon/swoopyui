@@ -28,7 +28,7 @@ from .views.contextmenu import ContextMenu
 from .views.labeledbutton import LabeledButton
 from .views.menu import Menu
 from .views.scrollingtabview import ScrollingTabView
-# from .views.navigationstack import NavigationStack
+from .views.navigationstack import NavigationStack
 # from .views.image import Image
 # from .views.webview import WebView
 # from .views.animatedview import AnimatedView

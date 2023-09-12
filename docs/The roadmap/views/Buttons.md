@@ -33,3 +33,19 @@ Support: ElevatedButton and LabeledButton.
 6. `bgcolor`: The background color of the button.
 
 Support: ElevatedButton only.
+
+7. `icon_name`: The icon name.
+
+Support: LabeledButton. || Browse all availble icons at [Apple SF symbols](https://developer.apple.com/sf-symbols/)
+
+8. `icon_size`: The icon size.
+
+Support: LabeledButton.
+
+9. `size`: The content's font size.
+
+Support: LabeledButton.
+
+10. `icon_color`: The icon color.
+
+Support: LabeledButton.

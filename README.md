@@ -34,7 +34,7 @@ app(target=main)
 
 Start with this learning-roadmap:
 - [Simple `swoopyui` app](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/simple_app.md)
-- Soon
+- [Subviews](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/subviews.md)
 
 ## Publishing
 1. Using xcode.

@@ -6,7 +6,7 @@ from .subview import SubView
 class NavigationSplitView (SubViewParent):
     """A view that presents views in two or three columns, where selections in 
     leading columns control presentations in subsequent columns."""
-    def __init__(self, title:str, detail_title:str="") -> None:
+    def __init__(self, title:str="", detail_title:str="") -> None:
         super().__init__()
 
         self.title : str = title
