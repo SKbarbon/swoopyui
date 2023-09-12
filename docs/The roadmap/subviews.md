@@ -14,4 +14,5 @@ myText.update()
 
 ## all swoopyui subviews
 Here is a list of all swoopyui subviews:
-- [`Text`]()
+- [`Text`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/Texts.md)
+- [`Buttons`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/Buttons.md)

@@ -3,6 +3,7 @@ from .subview import SubView
 
 
 class TextButton (SubView):
+    """A button with a text only."""
     def __init__(self, content:str, on_click=None) -> None:
         super().__init__()
 

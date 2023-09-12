@@ -3,6 +3,7 @@ from ..tools.on_action import on_view_action
 
 
 class Button (SubViewParent):
+    """A button with subviews inside it"""
     def __init__(self, width:float=100, height:float=40, corner_radius:float=12, on_click=None) -> None:
         super().__init__()
 
