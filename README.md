@@ -35,6 +35,8 @@ app(target=main)
 Start with this learning-roadmap:
 - [Simple `swoopyui` app](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/simple_app.md)
 - [Subviews](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/subviews.md)
+- [Preview and test](https://github.com/SKbarbon/swoopyui/blob/main/docs/swoopyui_preview.md)
+- [Publishing and Packaging](https://github.com/SKbarbon/swoopyui/blob/main/docs/publish_to_standalone_app.md)
 
 ## Publishing and previewing
 1. Previewing
