@@ -25,4 +25,4 @@ def main (view:swoopyui.View):
         swoopyui.TextButton("Change that dear!", on_click=vc)
     ])
 
-swoopyui.app(target=main)
+swoopyui.app(target=main, for_preview=True)

@@ -36,11 +36,17 @@ Start with this learning-roadmap:
 - [Simple `swoopyui` app](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/simple_app.md)
 - [Subviews](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/subviews.md)
 
-## Publishing
-1. Using xcode.
+## Publishing and previewing
+1. Previewing
+During the development, you want to real-time check your app to see how its behaves and look. Swoopyui porovide a very awesome way to preview and test your app before the development. 
 
-You can use the xcode project template to publish to iOS, iPadOS, Mac (Designed for iPad) and Apple Vision (Designed for iPad) all of that by one project.
-Follow the guidelines here: [soon]()
+In macOS, soon as you run your python script, you will get a swoopyui window with latest script changes.
+
+For testing in iOS and other platforms, you can check this page: [swoopyui preview](https://github.com/SKbarbon/swoopyui/blob/main/docs/swoopyui_preview.md).
+
+2. Publishing
+You can deploy and publish your swoopyui project into iOS, iPadOS, macOS and visionOS. To read more about publishing your swoopyui script into a standalone application, read this page: [swoopyui publishing](https://github.com/SKbarbon/swoopyui/blob/main/docs/publish_to_standalone_app.md).
+
 ## ⚠️ help and contribute wanted!!
 - A Secure connection strategy.
 
