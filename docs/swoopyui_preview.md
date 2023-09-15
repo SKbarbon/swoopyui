@@ -3,7 +3,8 @@ swoopyui provides a magical way to test your swoopyui project UI in your iOS, iP
 
 swoopyui preview feature allow you to instantly preview UI in the `swoopyui` app, its availble in the App Store:
 
-[swoopyui in App Store]()
+<!-- [swoopyui in App Store]() -->
+[swoopyui on TestFlight](https://testflight.apple.com/join/DwKcRV2p)
 
 ## How to start using the preview feature ?
 1. Start by building your python swoopyui app, then append `for_preview=True` argument to the `app` class in the end. For example:
