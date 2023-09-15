@@ -16,3 +16,4 @@ myText.update()
 Here is a list of all swoopyui subviews:
 - [`Text`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/Texts.md)
 - [`Buttons`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/Buttons.md)
+- [`Navigations`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/navigations.md)

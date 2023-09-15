@@ -1,3 +1,9 @@
+"""
+swoopyui is a python library that allow you to build swoopyui applications in python only!
+
+Visit the github page:
+[swoopyui github](https://github.com/SKbarbon/swoopyui)
+"""
 from .tools.check_platform import is_device_a_ios, is_device_a_mac
 if is_device_a_mac() or is_device_a_ios():
     pass
@@ -29,6 +35,9 @@ from .views.labeledbutton import LabeledButton
 from .views.menu import Menu
 from .views.scrollingtabview import ScrollingTabView
 from .views.navigationstack import NavigationStack
+from .views.videoplayer import VideoPlayer
+from .views.geometryreader import GeometryReader
+from .views.zstack import ZStack
 # from .views.image import Image
 # from .views.webview import WebView
 # from .views.animatedview import AnimatedView

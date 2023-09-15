@@ -31,6 +31,7 @@ class TextField (SubView):
     def on_event (self, event_content:dict):
         if event_content['name'] == "on_change":
             self.content = str(event_content['content'])
+            self.vdata['props']['content'] = str(event_content['content'])
             on_view_action(self.on_change, [self])
 
     def update (self):

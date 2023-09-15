@@ -2,15 +2,15 @@ from .subviewparent import SubViewParent
 
 
 
-class VStack (SubViewParent):
-    """Align the subviews in a parent stack verticaly."""
+class ZStack (SubViewParent):
+    """A view that overlays its subviews, aligning them in both axes."""
     def __init__(self, padding:int=0) -> None:
         super().__init__()
 
         self.padding : int = padding
 
         self.vdata.update({
-            "name" : "VStack",
+            "name" : "ZStack",
             "props" : {
                 "padding" : self.padding
             }

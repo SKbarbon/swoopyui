@@ -3,7 +3,7 @@ from .subviewparent import SubViewParent
 
 
 class ContextMenu (SubViewParent):
-    """A """
+    """A container for views that you present as menu items in a context menu."""
     def __init__(self) -> None:
         super().__init__()
 
