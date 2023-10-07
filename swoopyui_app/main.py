@@ -1,28 +1,10 @@
 import swoopyui
 
 def main (view:swoopyui.View):
-    def on_c (cls:swoopyui.ElevatedButton):
-        print("Here!")
-        testing_label.content = str("No its two!")
-        testing_label.update()
-    
-    nav = swoopyui.NavigationStack("Try effect!")
-    view.add(nav)
+    vid_link = view.create_asset_link("vv.mp4")
 
-    nl = swoopyui.NavigationLink()
-    nav.add([nl])
+    vp = swoopyui.VideoPlayer(link=vid_link)
+    view.add(vp)
 
-    nl.add([
-        swoopyui.Text("Go to testing page!")
-    ])
 
-    testing_label = swoopyui.Text("One?")
-    vt = swoopyui.VStack()
-    nl.add_to_destination([vt])
-
-    vt.add([
-        testing_label,
-        swoopyui.ElevatedButton("Change", on_click=on_c)
-    ])
-
-    nl.update()
+swoopyui.app(target=main, base_name=__name__)

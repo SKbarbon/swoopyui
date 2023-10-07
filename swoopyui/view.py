@@ -1,6 +1,6 @@
 from .views.subview import SubView
 from .protocol import onAddNewSubViewRequest, onUpdateSubviewProps
-
+import urllib.parse
 
 class View (object):
     def __init__(self, host_port, host_app_class) -> None:
@@ -32,6 +32,7 @@ class View (object):
     
     def remove (self, subview:SubView):
         """Remove a subview from the swiftUI app."""
+        pass
     
     def get_subview_by_id (self, subview_id:int):
         """This function will search for the subviewID in the subviews history.
@@ -79,6 +80,17 @@ class View (object):
         
         elif event_dict['action'] == "startup_app_info":
             self.platform = event_dict['content']['platform']
+    
+    def create_asset_link (self, asset_path:str) -> str:
+        if self.__host_app_class.host_url != None:
+            clear_url = str(self.__host_app_class.host_url)
+            if clear_url.endswith("/"):
+                clear_url = clear_url[:-1]
+            
+            encoded_string = urllib.parse.quote(asset_path)
+            asset_url = f"{clear_url}/get_asset?file_path={encoded_string}"
+            return asset_url
+        return None
 
 
     def subview_reverse_event (self, update_dict):

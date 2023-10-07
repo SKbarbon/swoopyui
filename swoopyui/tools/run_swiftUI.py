@@ -5,12 +5,23 @@ import requests
 from .unzip_assets import unzip_file
 from .pyinstaller_check import is_run_on_pyinstaller
 
-def run_swiftUI_app(port, tmp_dir):
+def run_swiftUI_app(port, tmp_dir, view_mode):
     # get the current temporary folder.
     temp_dir = tmp_dir
 
     # Prepare paths
-    zip_path = str(__file__).replace("tools/run_swiftUI.py", "assets/swoopyui.zip")
+    zip_file_name = "swoopyui.zip"
+    if view_mode == "app":
+        zip_file_name = "swoopyui.zip"
+    elif view_mode == "agent":
+        zip_file_name = "swoopyui_agent.zip"
+    elif view_mode == "menu_bar_extra":
+        zip_file_name = "swoopyui_menubarextra.zip"
+    else:
+        print(f"Warning: There is no app mode named '{view_mode}'. Running as 'app' mode.")
+        zip_file_name = "swoopyui.zip"
+
+    zip_path = str(__file__).replace("tools/run_swiftUI.py", f"assets/{zip_file_name}")
     new_app_path = os.path.join(temp_dir, "swoopyui.app/")
 
     if is_run_on_pyinstaller():

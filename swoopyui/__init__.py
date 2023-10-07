@@ -11,7 +11,7 @@ else:
     print("WARNING: This platform is not supported for the development.")
     # raise Exception ("Your device is not a mac. So cannot use this library.")
 
-from .swoopyui import app
+from .swoopyui import app, AppMode
 
 from .view import View
 
@@ -39,6 +39,7 @@ from .views.navigationstack import NavigationStack
 from .views.videoplayer import VideoPlayer
 from .views.geometryreader import GeometryReader
 from .views.zstack import ZStack
+from .views.toggle import Toggle
 # from .views.image import Image
 # from .views.webview import WebView
 # from .views.animatedview import AnimatedView

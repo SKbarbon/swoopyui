@@ -33,6 +33,10 @@ def main (view:swoopyui.View):
 
 swoopyui.app(target=main)
 ```
+
+## open sub page
+To make the user navigate to a new page from your navigation view, use [NavigationLink](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/navigations.md) class.
+
 ## properties
 ### title
 The title of the main column of the navigation.

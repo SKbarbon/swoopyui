@@ -33,6 +33,13 @@ class SubViewParent (SubView):
 
             self.main_view.add_to_subviews_history(subview)
         self.update()
+    
+
+
+    def replace_subview_by_subviewclass (self, subview_class:SubView, new_subview_class:SubView):
+        """"""
+        pass
+
 
     def update(self):
         return super().update()
