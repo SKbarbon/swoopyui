@@ -1,0 +1,30 @@
+# Ignore Python bytecode files
+__pycache__/
+
+# Ignore environment-specific files
+.env
+
+# Ignore the virtual environment directory (if you're using virtualenv or venv)
+venv/
+.venv/
+
+# Ignore log files and other generated files
+*.log
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore local settings (if you have a settings file with sensitive data)
+settings_local.py
+
+# Ignore database files
+db.sqlite3
+
+# Ignore the "build" directory (if you're using tools like setuptools)
+build/
+
+# Ignore the "dist" directory (if you're using tools like setuptools)
+dist/
+
+# Ignore the "egg-info" directory (if you're using tools like setuptools)
+*.egg-info/
