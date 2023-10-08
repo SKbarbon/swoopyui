@@ -34,10 +34,14 @@ class app:
             debug:bool=False, 
             for_preview=False
         ) -> None:
+
         self.target_function = target
         self.base_name = base_name
         self.debug = debug
-        self.view_mode = str(view.value)
+        if isinstance(view):
+            self.view_mode = str(view)
+        else:
+            self.view_mode = str(view.value)
         self.for_preview = for_preview
 
         self.host_port = get_free_port()
@@ -110,7 +114,6 @@ class app:
         elif is_device_a_mac() and self.for_preview == False:
             tmp_dir = tempfile.mkdtemp()
             self.tmp_dir = tmp_dir
-            print(self.tmp_dir)
             threading.Thread(target=run_swiftUI_app, args=[self.host_port, tmp_dir, self.view_mode], daemon=True).start()
 
         if self.for_preview:
