@@ -41,14 +41,14 @@ Start with this learning-roadmap:
 ## Publishing and previewing
 1. Previewing
 
-During the development, you want to real-time check your app to see how its behaves and look. Swoopyui porovide a very awesome way to preview and test your app before the development. 
+During the development, you want to real-time check your app to see how its behaves and look. Swoopyui porovide a very awesome way to preview and test your app during and after the development. 
 In macOS, soon as you run your python script, you will get a swoopyui window with latest script changes.
 
 For testing in iOS and other platforms, you can check this page: [swoopyui preview](https://github.com/SKbarbon/swoopyui/blob/main/docs/swoopyui_preview.md).
 
 2. Publishing
 
-You can deploy and publish your swoopyui project into iOS, iPadOS, macOS and visionOS. To read more about publishing your swoopyui script into a standalone application, read this page: [swoopyui publishing](https://github.com/SKbarbon/swoopyui/blob/main/docs/publish_to_standalone_app.md).
+You can deploy and publish your swoopyui project into iOS, iPadOS, macOS and visionOS applications. To read more about publishing your swoopyui script into a standalone application, read this page: [swoopyui publishing](https://github.com/SKbarbon/swoopyui/blob/main/docs/publish_to_standalone_app.md).
 
 ## ⚠️ help and contribute wanted!!
 - A Secure connection strategy.

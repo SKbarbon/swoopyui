@@ -1,6 +1,11 @@
 import swoopyui
 
 def main (view:swoopyui.View):
-    view.add(swoopyui.Text("Hello!"))
+    m = swoopyui.Menu("MyMenu")
+    view.add(m)
 
-swoopyui.app(target=main, view=swoopyui.AppMode.App)
+    m.add([
+        swoopyui.Text("Thats a menu")
+    ])
+
+swoopyui.app(target=main)

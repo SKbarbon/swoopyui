@@ -3,5 +3,4 @@
 
 # todo
 - Support TextEditor.
-- Support Menus
-- Support ContextMenu
+- Support a custom view named `Resizable view`

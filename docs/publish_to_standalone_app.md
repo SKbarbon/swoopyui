@@ -2,7 +2,9 @@
 
 ## Platforms
 ### MacOS
-Soon.
+To build a native macOS standalone app, we suggest these options:
+1. Use the xcode template. -soon-
+2. Build your application using beeware's `briefcase` project. Tested ✅, no issues ✅.
 
 ### iOS, iPadOS, macOS (Designed for iPad) and VisionOS (Designed for iPad).
 You can publish your swoopyui project into a standalone iOS, iPadOS, macOS(Designed for iPad) and VisionOS (Designed for iPad) platforms. One way to do this is by using the [xcode swoopyui iOS template](https://github.com/swoopyui/SwoopyuiTemplate-iOS).

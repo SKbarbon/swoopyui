@@ -38,7 +38,7 @@ class app:
         self.target_function = target
         self.base_name = base_name
         self.debug = debug
-        if isinstance(view):
+        if isinstance(view, str):
             self.view_mode = str(view)
         else:
             self.view_mode = str(view.value)

@@ -18,4 +18,5 @@ Here is a list of all swoopyui subviews:
 - [`Buttons`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/Buttons.md)
 - [`Navigations`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/navigations.md)
 - [`Stacks`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/stacks.md)
-- [`navigationlinl`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/navigationlink.md)
+- [`NavigationLink`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/navigationlink.md)
+- [`Menus`](https://github.com/SKbarbon/swoopyui/blob/main/docs/The%20roadmap/views/menus.md)
