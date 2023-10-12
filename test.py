@@ -1,11 +1,14 @@
-import swoopyui
+import swoopyui, threading, time
 
 def main (view:swoopyui.View):
-    m = swoopyui.Menu("MyMenu")
-    view.add(m)
+    def cl (cls:swoopyui.TextButton):
+        print("clicked!")
+        lis.add([swoopyui.Text("HAHA")])
+        cls.content = "clicked."
+        cls.update()
+    
+    lis = swoopyui.List()
+    view.add(lis)
+    lis.add([swoopyui.TextButton("CLick me!", on_click=cl)])
 
-    m.add([
-        swoopyui.Text("Thats a menu")
-    ])
-
-swoopyui.app(target=main)
+swoopyui.app(target=main, view=swoopyui.AppMode.MenuBarExtra)

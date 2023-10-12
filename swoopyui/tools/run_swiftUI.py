@@ -44,7 +44,14 @@ def run_swiftUI_app(port, tmp_dir, view_mode):
 
     # run the command the will start the swiftUI app
     run_command = [executable_of_the_app, str(port)]
-    subprocess.run(run_command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(
+        run_command, 
+        stdout=subprocess.DEVNULL, 
+        stderr=subprocess.DEVNULL,
+        env={
+            "host_port" : str(port)
+        }
+    )
 
     # Remove the temporary dir.
     if os.path.isdir (temp_dir):

@@ -96,6 +96,15 @@ class View (object):
     def subview_reverse_event (self, update_dict):
         """It when the subview request an event from the python side into the swift side."""
         self.__add_to_next_update_requests(update_dict=update_dict)
+    
+
+    def push_error_message (self, error_content:str):
+        """Show an error message and prevent the UI from updating it self with new UI updates"""
+        error_dict = {
+            "action" : "host_error",
+            "error_message" : error_content
+        }
+        self.__add_to_next_update_requests(update_dict=error_dict)
 
 
     def __add_to_next_update_requests(self, update_dict):
