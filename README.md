@@ -38,6 +38,8 @@ Start with this learning-roadmap:
 - [Preview and test](https://github.com/SKbarbon/swoopyui/blob/main/docs/swoopyui_preview.md)
 - [Publishing and Packaging](https://github.com/SKbarbon/swoopyui/blob/main/docs/publish_to_standalone_app.md)
 
+**For using `swoopyui` on a non-mac device, check this [page](https://github.com/SKbarbon/swoopyui/blob/main/docs/developing_on_nonmac.md)**
+
 ## Publishing and previewing
 1. Previewing
 
