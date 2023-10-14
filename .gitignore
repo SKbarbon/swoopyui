@@ -12,6 +12,7 @@ venv/
 *.log
 *.pyc
 *.pyo
+*.DS_Store
 __pycache__/
 
 # Ignore local settings (if you have a settings file with sensitive data)

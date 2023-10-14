@@ -9,7 +9,8 @@ def main(view:swoopyui.View):
         number.content = str(eval(number.content))
         number.update()
 
-    nav = swoopyui.NavigationSplitView("Calculator")
+    # nav = swoopyui.NavigationSplitView("Calculator")
+    nav = swoopyui.NavigationStack("Calculator")
     view.add(nav)
 
 

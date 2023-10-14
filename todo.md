@@ -3,4 +3,5 @@
 
 # todo
 - Support TextEditor.
-- Support a custom view named `Resizable view`
+- Support a custom view named `Resizable view`.
+- Support `KeyboardShortcuts`.
