@@ -119,9 +119,9 @@ class app:
         if self.for_preview:
             print("Your preview host ready, this is the host data:\n\n")
             threading.Thread(target=self.no_logging_after_3_sec).start()
-            flask_app.run(host="0.0.0.0", port=self.host_port)
+            flask_app.run(host="0.0.0.0", port=self.host_port, threaded=True)
         else:
-            flask_app.run(host="localhost", port=self.host_port)
+            flask_app.run(host="localhost", port=self.host_port, threaded=True)
     
     def no_logging_after_3_sec (self):
         time.sleep(3)
