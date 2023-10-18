@@ -5,11 +5,11 @@ from .tools.run_swiftUI_ios import prepare_swiftUI_for_ios
 from .tools.run_swiftUI import run_swiftUI_app
 from .tools.get_free_port import get_free_port
 from .view import View
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, Response
 import logging, threading, tempfile, time, shutil, os
 from enum import Enum
 import signal
-import sys
+import json
 
 
 class AppMode (Enum):
@@ -89,6 +89,22 @@ class app:
             return {
                 "updts" : updts
             }
+        
+        @flask_app.route("/stream_updates")
+        def stream_updates():
+            def stream_the_respone ():
+                repeat_number = 0
+                while True:
+                    time.sleep(0.3)
+                    updts = list(self.next_get_updates_responses)
+                    self.next_get_updates_responses.clear()
+                    repeat_number = repeat_number + 1
+                    data = {
+                        "updts" : updts,
+                        "repeat_number" : repeat_number
+                    }
+                    yield 'data: {}\n\n'.format(json.dumps(data))
+            return Response(stream_the_respone(), mimetype="text/event-stream")
         
         @flask_app.route("/push_update", methods=['POST'])
         def push_update():
