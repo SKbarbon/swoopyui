@@ -142,6 +142,7 @@ class app:
     
     def no_logging_after_3_sec (self):
         time.sleep(3)
+        if self.debug: return
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.ERROR)
     

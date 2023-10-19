@@ -11,4 +11,4 @@ def main (view:swoopyui.View):
     tf = swoopyui.TextField("Name", on_change=on_c)
     view.add(tf)
 
-swoopyui.app(target=main, view=swoopyui.AppMode.MenuBarExtra)
+swoopyui.app(target=main)
