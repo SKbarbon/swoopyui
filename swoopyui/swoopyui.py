@@ -5,11 +5,11 @@ from .tools.run_swiftUI_ios import prepare_swiftUI_for_ios
 from .tools.run_swiftUI import run_swiftUI_app
 from .tools.get_free_port import get_free_port
 from .view import View
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, Response
 import logging, threading, tempfile, time, shutil, os
 from enum import Enum
 import signal
-import sys
+import json
 
 
 class AppMode (Enum):
@@ -35,6 +35,7 @@ class app:
             for_preview=False
         ) -> None:
 
+        # setup properties
         self.target_function = target
         self.base_name = base_name
         self.debug = debug
@@ -49,8 +50,6 @@ class app:
         self.next_get_updates_responses = []
 
         self.client_view = View(host_port=self.host_port, host_app_class=self)
-
-        # start the host
         self.tmp_dir = ""
 
         #! -----------
@@ -63,6 +62,7 @@ class app:
         signal.signal(signal.SIGTERM, signal_handler)
         #! -----------
 
+        # start the host.
         print("Host started..")
         self.host()
 
@@ -75,6 +75,7 @@ class app:
             log = logging.getLogger('werkzeug')
             log.setLevel(logging.ERROR)
         
+        # When this called, the target function is being also called.
         @flask_app.route("/start_target_function")
         def start_target_function ():
             print("A swiftUI client connected..")
@@ -82,6 +83,7 @@ class app:
             threading.Thread(target=run_the_target, args=[self.target_function, [self.client_view]]).start()
             return '{"ok":true}'
         
+        # Deprecated: This was called to get latest host updates.
         @flask_app.route("/get_updates")
         def get_updates():
             updts = list(self.next_get_updates_responses)
@@ -89,6 +91,21 @@ class app:
             return {
                 "updts" : updts
             }
+        
+        # Get latest host updates in a Server-Set Event (SEE) stream.
+        @flask_app.route("/stream_updates")
+        def stream_updates():
+            def stream_the_respone ():
+                while True:
+                    time.sleep(0.05)
+                    updts = list(self.next_get_updates_responses)
+                    self.next_get_updates_responses.clear()
+                    data = {
+                        "updts" : updts
+                    }
+                    if data['updts'] != []:
+                        yield 'data: {}\n\n'.format(json.dumps(data))
+            return Response(stream_the_respone(), mimetype="text/event-stream")
         
         @flask_app.route("/push_update", methods=['POST'])
         def push_update():

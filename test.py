@@ -2,6 +2,13 @@ import swoopyui, time
 
 
 def main (view:swoopyui.View):
-    view.add(swoopyui.Text("GG"))
+    def on_c (cls:swoopyui.TextField):
+        t.content = str(tf.content)
+        t.update()
+    t = swoopyui.Text("")
+    view.add(t)
 
-swoopyui.app(target=main)
+    tf = swoopyui.TextField("Name", on_change=on_c)
+    view.add(tf)
+
+swoopyui.app(target=main, view=swoopyui.AppMode.MenuBarExtra)
