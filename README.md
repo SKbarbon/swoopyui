@@ -51,8 +51,3 @@ For testing in iOS and other platforms, you can check this page: [swoopyui previ
 2. Publishing
 
 You can deploy and publish your swoopyui project into iOS, iPadOS, macOS and visionOS applications. To read more about publishing your swoopyui script into a standalone application, read this page: [swoopyui publishing](https://github.com/SKbarbon/swoopyui/blob/main/docs/publish_to_standalone_app.md).
-
-## ⚠️ help and contribute wanted!!
-- A Secure connection strategy.
-
-Thanks, good luck..
