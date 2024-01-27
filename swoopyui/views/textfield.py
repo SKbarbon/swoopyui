@@ -12,7 +12,7 @@ class TextField (SubView):
         self.resizeable : bool = resizeable
         self.width : int = width
         self.height : int = height
-        self.color : int = color
+        self.color : str = color
         self.on_change = on_change
 
         self.vdata.update({
