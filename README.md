@@ -1,5 +1,5 @@
 <img src="https://github.com/SKbarbon/swoopyui/assets/86029286/625fe4b3-095d-4369-b04d-0319537a7dfc" alt="drawing" width="120"/>
-
+Project is NOT under maintenance anymore. I started the project for fun. And I do NOT plan to continue the work any time soon.
 # swoopyui
 swoopyui is a python library that enable developers to easily build swiftUI apps only in python. Its not need any swiftUI experience.
 
